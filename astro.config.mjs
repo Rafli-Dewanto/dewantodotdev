@@ -12,5 +12,12 @@ export default defineConfig({
         tailwind({
             applyBaseStyles: false
         })
-    ]
+    ],
+    markdown: {
+        syntaxHighlight: 'shiki',
+        shikiConfig: {
+            theme: 'vitesse-dark',
+            wrap: false
+        }
+    }
 });
