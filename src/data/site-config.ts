@@ -71,32 +71,24 @@ const siteConfig: SiteConfig = {
         {
             text: 'Contact',
             href: '/contact'
-        },
-        {
-            text: 'Terms',
-            href: '/terms'
-        },
-        {
-            text: 'Download theme',
-            href: 'https://github.com/JustGoodUI/dante-astro-theme'
         }
     ],
     socialLinks: [
         {
-            text: 'Dribbble',
-            href: 'https://dribbble.com/'
+            text: 'LinkedIn',
+            href: 'https://www.linkedin.com/in/rd09/'
+        },
+        {
+            text: 'GitHub',
+            href: 'https://github.com/Rafli-Dewanto'
         },
         {
             text: 'Instagram',
-            href: 'https://instagram.com/'
-        },
-        {
-            text: 'X/Twitter',
-            href: 'https://twitter.com/'
+            href: 'https://instagram.com/rafli.dewanto'
         }
     ],
     hero: {
-        title: 'Hi 👋, Welcome to My Corner of the Web!',
+        title: 'What\'s good, welcome to my digital block!',
         text: "I'm **Rafli Dewanto**, a Software Engineer from Indonesia, currently working with Next.js for Fullstack Web Development. In my leisure time, I am learning Back-End Development with Go and writing post about my learning.. Feel free to explore some of my coding endeavors on <a href='https://github.com/Rafli-Dewanto'>GitHub</a> or follow me on <a href='https://www.linkedin.com/in/rd09/'>LinkedIn</a>.",
         image: {
             src: '/rafli.JPG',
