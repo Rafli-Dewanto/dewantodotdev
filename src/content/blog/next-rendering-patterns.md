@@ -43,7 +43,7 @@ export default function Home() {
 
 Jika kita perhatikan, mungkin kita akan berpikir bahwa Next.js akan render angka yang berbeda setiap kita refresh halaman. Namun seperti yang sudah saya jelaskan sebelumnya, yang mana Next.js by default akan render page secara static, maka pada saat build time Next.js hanya akan menjalankan fungsi `Math` sekali saja dan angka tersebut tidak akan berubah. 
 
-> "Tapi ini waktu saya coba kodingannya dan direfresh, angkanya tetap berubah kok!".
+> Tapi ini waktu saya coba kodingannya dan direfresh, angkanya tetap berubah kok!.
 
 Iya, karena kalian menjalankan kodenya di development, namun ketika kalian sudah build Next.js project kalian dan menjalankannya di production, ketika kalian coba refresh halaman tersebut angkanya akan tetap sama.
 
