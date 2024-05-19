@@ -88,7 +88,7 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'What\'s good, welcome to my digital block! 😉',
+        title: 'What\'s good, welcome to my digital space 😉!',
         text: "I'm **Rafli Dewanto**, a Software Engineer from Indonesia, currently working with Next.js for Fullstack Web Development. In my leisure time, I am learning Back-End Development with Go and writing post about my learning. Feel free to explore some of my coding endeavors on <a href='https://github.com/Rafli-Dewanto'>GitHub</a> or follow me on <a href='https://www.linkedin.com/in/rd09/'>LinkedIn</a>.",
         image: {
             src: '/rafli.JPG',
