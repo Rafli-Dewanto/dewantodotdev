@@ -11,73 +11,44 @@ const hero = siteConfig.hero;
         <section class='w-full flex flex-col gap-8 mb-16 sm:mb-24'>
             {hero.title && <h1 class='text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight'>{hero.title}</h1>}
             {hero.image?.src && (
-                <div class='my-8 grid grid-cols-2 grid-rows-4 gap-4 sm:grid-cols-3 sm:grid-rows-3'>
-                    {/* image 0 */}
-                    <div class='relative row-span-2'>
-                        <img
-                            alt='My badge on top of a pile of badges from a Vercel meetup we held'
-                            fetchpriority='high'
-                            decoding='async'
-                            data-nimg='fill'
-                            class='rounded-lg object-cover'
-                            sizes='(max-width: 768px) 213px, 33vw'
-                            src='rafli.JPG'
-                            style='position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;'
-                        />
-                    </div>
-                    {/* image 1 */}
-                    <div class='relative h-40'>
-                        <img
-                            src='/neotic-1.JPG'
-                            alt='Me speaking on stage at React Summit about the future of Next.js'
-                            fetchpriority='high'
-                            decoding='async'
-                            data-nimg='fill'
-                            class='rounded-lg object-cover'
-                            sizes='(max-width: 768px) 213px, 33vw'
-                            style='position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;'
-                        />
-                    </div>
-                    {/* image 2 */}
-                    <div class='relative row-span-1 sm:row-span-2'>
-                        <img
-                            alt='Me standing on stage at Reactathon delivering the keynote'
-                            fetchpriority='high'
-                            decoding='async'
-                            data-nimg='fill'
-                            class='rounded-lg object-contain object-top sm:object-center'
-                            sizes='(max-width: 768px) 213px, 33vw'
-                            src='neotic-2.jpeg'
-                            style='position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;'
-                        />
-                    </div>
-                    {/* image 3 */}
-                    <div class='relative'>
-                        <img
-                            src='person-sitting.jpeg'
-                            alt='Me and Guillermo Rauch on stage for Vercel Ship, answering questions from the Next.js community'
-                            fetchpriority='high'
-                            decoding='async'
-                            data-nimg='fill'
-                            class='rounded-lg object-cover'
-                            sizes='(max-width: 768px) 213px, 33vw'
-                            style='position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;'
-                        />
-                    </div>
-                    {/* image 4 */}
-                    <div class='relative row-span-2'>
-                        <img
-                            alt='Me, Lydia, and Delba filming the Next.js Conf keynote'
-                            fetchpriority='high'
-                            decoding='async'
-                            data-nimg='fill'
-                            class='rounded-lg object-cover sm:object-center'
-                            sizes='(max-width: 768px) 213px, 33vw'
-                            src='mirror-selfie.jpg'
-                            style='position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;'
-                        />
-                    </div>
-                </div>
+                <div class='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto sm:grid-cols-1'>
+    <img
+        alt='Image 1'
+        class='w-full h-full object-cover rounded-lg col-span-2 md:col-span-1 row-span-2 aspect-square md:aspect-[800/600] object-[center_30%]'
+        src='/rafli.JPG'
+    />
+    <img
+        alt='Image 2'
+        class='w-full h-full object-cover rounded-lg'
+        src='/neotic-1.JPG'
+        style='aspect-ratio: 400 / 300;'
+    />
+    <img
+        alt='Image 3'
+        class='w-full h-full object-cover rounded-lg'
+        src='/neotic-2.jpeg'
+        style='aspect-ratio: 400 / 300;'
+    />
+    <img
+        alt='Image 4'
+        class='w-full h-full object-cover rounded-lg col-span-2'
+        src='/person-sitting.jpeg'
+        style='aspect-ratio: 800 / 500;'
+    />
+    <img
+        alt='Image 5'
+        class='w-full h-full object-cover rounded-lg'
+        src='/mirror-selfie.jpg'
+        style='aspect-ratio: 300 / 400;'
+    />
+    <img
+        alt='Image 6'
+        class='w-full h-full object-cover rounded-lg col-span-2'
+        src='/era.jpg'
+        style='aspect-ratio: 400 / 300;'
+    />
+</div>
+
             )}
             {hero.text && <div class='max-w-none prose prose-dante sm:prose-lg' set:html={marked.parse(hero.text)} />}
             {hero.actions && hero.actions.length > 0 && (
