@@ -38,7 +38,7 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Rafli Satya Dewanto',
+    title: 'Rafli S. Dewanto',
     subtitle: 'Software Engineer',
     description: 'Rafli Dewanto - Software Engineer',
     image: {
