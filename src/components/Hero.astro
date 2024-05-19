@@ -14,14 +14,14 @@ const hero = siteConfig.hero;
                 <div class='grid grid-cols-2 md:grid-cols-3 gap-4 mx-auto sm:grid-cols-1'>
                     <img
                         alt='rafli satya dewanto'
-                        class='w-full h-full object-cover rounded-lg col-span-2 md:col-span-1 row-span-2 aspect-square md:aspect-[800/600] object-[center_30%]'
+                        class='w-full h-full object-cover rounded-lg col-span-2 md:col-span-1 row-span-2 aspect-square md:aspect-[800/600] object-[center_30%] hidden md:block'
                         src='/rafli.JPG'
                     />
-                    <img alt='Image 2' class='w-full h-full object-cover rounded-lg' src='/neotic-1.JPG' style='aspect-ratio: 400 / 300;' />
-                    <img alt='Image 3' class='w-full h-full object-cover rounded-lg' src='/neotic-2.jpeg' style='aspect-ratio: 400 / 300;' />
-                    <img alt='Image 4' class='w-full h-full object-cover rounded-lg col-span-2' src='/person-sitting.jpeg' style='aspect-ratio: 800 / 500;' />
-                    <img alt='Image 6' class='w-full h-full object-cover rounded-lg col-span-2' src='/era.jpg' style='aspect-ratio: 400 / 300;' />
-                    <img alt='Image 5' class='w-full h-full object-cover rounded-lg' src='/mirror-selfie.jpg' style='aspect-ratio: 300 / 400;' />
+                    <img alt='me & my friends from neotic' class='hidden md:block w-full h-full object-cover rounded-lg' src='/neotic-1.JPG' style='aspect-ratio: 400 / 300;' />
+                    <img alt='me & my friends from neotic' class='hidden md:block w-full h-full object-cover rounded-lg' src='/neotic-2.jpeg' style='aspect-ratio: 400 / 300;' />
+                    <img alt='rafli dewanto' class='hidden md:block w-full h-full object-cover rounded-lg col-span-2' src='/person-sitting.jpeg' style='aspect-ratio: 800 / 500;' />
+                    <img alt='eraspace' class='hidden md:block w-full h-full object-cover rounded-lg col-span-2' src='/era.jpg' style='aspect-ratio: 400 / 300;' />
+                    <img alt='mirror selfie' class='md:w-full md:h-full w-full h-full sm:w-80 sm:h-56 object-cover rounded-lg object-[center_30%]' src='/mirror-selfie.jpg' style='aspect-ratio: 300 / 400;' />
                 </div>
             )}
             {hero.text && <div class='max-w-none prose prose-dante sm:prose-lg' set:html={marked.parse(hero.text)} />}
