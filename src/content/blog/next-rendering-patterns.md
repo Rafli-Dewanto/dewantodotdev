@@ -7,8 +7,8 @@ tags:
   - Next.js
 seo:
   image:
-    src: '/post-1.jpg'
-    alt: A person standing at the window
+    src: ''
+    alt: ""
 isFeatured: true
 ---
 

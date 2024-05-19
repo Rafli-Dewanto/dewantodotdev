@@ -1,66 +1,47 @@
 ---
-title: 'EcoBuddy: Sustainable Living App'
-description: EcoBuddy is a mobile app that gamifies sustainable living. Users can set eco-friendly goals, track their carbon footprint, and earn virtual rewards for adopting environmentally conscious habits.
-publishDate: 'Jan 02 2024'
+title: 'Dishcovery Recipe App'
+description: Dishcovery Where every bite tells a story.
+publishDate: 'Jan 07 2024'
+isFeatured: true
 seo:
   image:
     src: '/project-1.jpg'
     alt: Project preview
 ---
 
-![Project preview](/project-1.jpg)
-
-**Note:** This case study is entirely fictional and created for the purpose of showcasing [Dante Astro.js theme functionality](https://justgoodui.com/astro-themes/dante/).
-
-**Project Overview:**
-EcoBuddy is a revolutionary mobile application designed to make sustainable living accessible, engaging, and rewarding. With a focus on gamification and real-world impact, EcoBuddy encourages users to adopt eco-friendly habits, reduce their carbon footprint, and contribute to a healthier planet.
-
-## Objectives
-
-1. Develop a user-friendly mobile app that motivates individuals to adopt sustainable practices in their daily lives.
-2. Utilize gamification elements to make sustainable living fun and interactive.
-3. Provide educational resources and personalized challenges to empower users to make informed eco-conscious decisions.
+**Project Overview:**  
+Repository: [dishcovery](https://github.com/Rafli-Dewanto/Dishcovery)  
+  
+Dishcovery is a social networking and blog app that allows users to create, edit, delete, and share their favorite recipes with a community of food enthusiasts. The app's mission is to make every bite tell a story. With Dishcovery, you can explore, create, and enjoy a world of delectable recipes shared by people from all over the globe.
 
 ## Features
 
-1. **EcoScore and Challenges:**
+- User Authentication: Utilizes Google OAuth for secure and convenient user authentication.
+- Recipe Creation: Users can create and customize their own recipes, complete with images, ingredients, and instructions.
+- Image Upload: Powered by Edgestore, it offers seamless image uploads for your recipe images.
+- Recipe Sharing: Share your recipes with the world or keep them private, as you prefer.
+- Recipe Editing and Deletion: Easily edit or delete your recipes at any time.
+- Community Interaction: Connect with like-minded food lovers, comment on recipes, and exchange culinary tips and tricks.
+- Responsive Design: The app is built with Next.js and offers a responsive and engaging user interface.
 
-- Users are assigned an EcoScore based on their sustainable activities and choices.
-- Daily and weekly challenges encourage users to adopt new habits and compete with friends or the community to earn EcoPoints.
+## Usage
+- Sign In: Use your Google account to sign in to the app.
+- Create Recipe: Click on "Create Recipe" to start sharing your culinary masterpiece.
+- Edit or Delete Recipe: Access your profile and click on the recipe you want to modify or delete.
+- Dishcover Recipes (no pun intended): Explore a world of recipes created by other users.
+- Interact with the Community: Like, comment, and share your thoughts on the recipes you love.
+- Enjoy! Share your love for food with the world and let every bite tell a story.
 
-2. **Personalized Eco-Goals:**
 
-- Users can set and track personalized eco-goals, such as reducing plastic usage, conserving water, or choosing eco-friendly transportation.
-- The app provides tips and suggestions to help users achieve their goals.
+## Technologies
+Dishcovery is built using the following technologies and dependencies:
 
-3. **Green Rewards Marketplace:**
+- Next.js: The foundation of the app, providing a fast and responsive user interface.
+- NextAuth.js: For secure and hassle-free user authentication.
+- Edgestore: Powering image uploads.
+- Prisma: Used for database management/ORM.
+- Tailwind CSS: Styling the app.
+- And many other libraries and packages (see package.json for a full list).
 
-- EcoPoints earned through challenges and sustainable actions can be redeemed in a virtual Green Rewards Marketplace.
-- The marketplace offers discounts on eco-friendly products, services, and even contributions to environmental causes.
-
-4. **Community Hub:**
-
-- A community feature allows users to connect, share their eco-friendly achievements, and inspire others.
-- Users can join local eco-groups, organize clean-up events, and collaborate on sustainability projects.
-
-5. **EcoEducator AI Assistant:**
-
-- An AI-powered assistant, EcoEducator, provides personalized eco-tips, facts, and information based on users' preferences and habits.
-- Users can chat with EcoEducator for instant advice on sustainable living.
-
-## Technology Stack
-
-- Frontend: React Native for cross-platform mobile app development.
-- Backend: Firebase for real-time data synchronization and user authentication.
-- Database: Firestore for scalable and flexible data storage.
-- AI Integration: Dialogflow for natural language processing and conversation with EcoEducator.
-
-## Outcome
-
-EcoBuddy has successfully created a community of environmentally conscious individuals who actively participate in sustainable living practices. The app not only educates and motivates users but also provides tangible rewards for their commitment to a greener lifestyle, fostering a positive impact on the environment.
-
-## Client Testimonial
-
-> We couldn't be happier with the results delivered by Ethan Donovan. From the initial concept discussions to the final product, their responsiveness and collaborative approach were impressive. Our startup's website now stands out, thanks to their creative input and commitment to excellence.
-
-**Note:** This case study is entirely fictional and created for the purpose of showcasing [Dante Astro.js theme functionality](https://justgoodui.com/astro-themes/dante/).
+## License
+This project is licensed under the MIT License.

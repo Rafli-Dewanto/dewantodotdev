@@ -1,64 +1,49 @@
 ---
-title: 'TimeWarp - Travel Agency Website'
-description: Explore the possibilities of time travel through an immersive website for a fictional travel agency, complete with dynamic destination timelines and interactive historical events.
-publishDate: 'Oct 2 2023'
+title: 'FlixTix'
+description: Movie Booking App.
+publishDate: 'Dec 26 2023'
 isFeatured: true
 seo:
   image:
-    src: '/project-2.jpg'
-    alt: Project preview
+    src: '/flixtix.jpeg'
+    alt: FlixTix
 ---
 
-![Project preview](/project-2.jpg)
+**Project Overview:**  
+Repository: [dishcovery](https://github.com/Rafli-Dewanto/Dishcovery)  
 
-**Note:** This case study is entirely fictional and created for the purpose of showcasing [Dante Astro.js theme functionality](https://justgoodui.com/astro-themes/dante/).
-
-**Project Overview:**
-TimeWarp Travel Agency aims to redefine the travel experience by offering an innovative and immersive online platform that explores the concept of time travel. The website combines cutting-edge technology with captivating storytelling to provide users with a unique journey through time.
-
-> Working with Ethan Donovan was a game-changer for our online presence. Their innovative solutions and attention to detail turned our vision into a reality. The website not only looks fantastic but also functions seamlessly. A true professional who exceeded our expectations!
-
-## Objectives
-
-1. Create a visually stunning and user-friendly website that captures the essence of time travel.
-2. Integrate interactive elements to engage users and make the experience memorable.
-3. Develop a responsive design to ensure a seamless user experience across various devices.
+![FlixTix](/flixtix.jpeg)
+  
+Dishcovery is a social networking and blog app that allows users to create, edit, delete, and share their favorite recipes with a community of food enthusiasts. The app's mission is to make every bite tell a story. With Dishcovery, you can explore, create, and enjoy a world of delectable recipes shared by people from all over the globe.
 
 ## Features
 
-1. **Dynamic Destination Timelines:**
+- User Authentication: Utilizes Google OAuth for secure and convenient user authentication.
+- Recipe Creation: Users can create and customize their own recipes, complete with images, ingredients, and instructions.
+- Image Upload: Powered by Edgestore, it offers seamless image uploads for your recipe images.
+- Recipe Sharing: Share your recipes with the world or keep them private, as you prefer.
+- Recipe Editing and Deletion: Easily edit or delete your recipes at any time.
+- Community Interaction: Connect with like-minded food lovers, comment on recipes, and exchange culinary tips and tricks.
+- Responsive Design: The app is built with Next.js and offers a responsive and engaging user interface.
 
-- Users can explore destinations through dynamic timelines, showcasing significant historical events, cultural developments, and architectural milestones.
-- Interactive sliders allow users to navigate through different eras, providing a visual representation of the historical evolution of each location.
+## Usage
+- Sign In: Use your Google account to sign in to the app.
+- Create Recipe: Click on "Create Recipe" to start sharing your culinary masterpiece.
+- Edit or Delete Recipe: Access your profile and click on the recipe you want to modify or delete.
+- Dishcover Recipes (no pun intended): Explore a world of recipes created by other users.
+- Interact with the Community: Like, comment, and share your thoughts on the recipes you love.
+- Enjoy! Share your love for food with the world and let every bite tell a story.
 
-2. **Interactive Historical Events:**
 
-- Users can click on specific points in the timeline to reveal detailed information about key historical events related to the chosen destination.
-- Rich multimedia content, including images, videos, and articles, provides a comprehensive understanding of each event.
+## Technologies
+Dishcovery is built using the following technologies and dependencies:
 
-3. **Personalized Time Travel Planner:**
+- Next.js: The foundation of the app, providing a fast and responsive user interface.
+- NextAuth.js: For secure and hassle-free user authentication.
+- Edgestore: Powering image uploads.
+- Prisma: Used for database management/ORM.
+- Tailwind CSS: Styling the app.
+- And many other libraries and packages (see package.json for a full list).
 
-- A personalized planner feature enables users to create their time travel itineraries by selecting specific eras and destinations.
-- The system suggests thematic experiences, such as attending historical events or meeting famous personalities.
-
-4. **Time-Port Virtual Reality Experience:**
-
-- For an extra layer of immersion, users can opt for the Time-Port VR experience, allowing them to virtually step into different time periods and explore the surroundings in 360 degrees.
-
-5. **Chronicle Explorer Blog:**
-
-- A blog section, "Chronicle Explorer," offers in-depth articles and stories about various historical periods and their impact on the destinations featured on the platform.
-- Users can engage with the content, comment, and share their own historical insights.
-
-## Technology Stack
-
-- **Frontend:** [Astro.js](https://astro.build/) for a dynamic and responsive user interface and [Tailwind CSS](https://tailwindcss.com/) for styling.
-- **Backend:** Node.js for handling server-side logic and API integration.
-- **Database:** MongoDB for efficient storage and retrieval of historical data.
-- **VR Integration:** A-Frame framework for creating immersive virtual reality experiences.
-
-## Outcome
-
-The TimeWarp Travel Agency Website successfully brings the concept of time travel to life, providing users with a captivating and educational experience. The website not only serves as a travel planning tool but also as an interactive platform that encourages users to explore and appreciate the rich tapestry of human history.
-
-**Note:** This case study is entirely fictional and created for the purpose of showcasing [Dante Astro.js theme functionality](https://justgoodui.com/astro-themes/dante/).
+## License
+This project is licensed under the MIT License.
