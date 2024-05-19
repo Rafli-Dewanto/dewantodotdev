@@ -12,43 +12,17 @@ const hero = siteConfig.hero;
             {hero.title && <h1 class='text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight'>{hero.title}</h1>}
             {hero.image?.src && (
                 <div class='grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto sm:grid-cols-1'>
-    <img
-        alt='Image 1'
-        class='w-full h-full object-cover rounded-lg col-span-2 md:col-span-1 row-span-2 aspect-square md:aspect-[800/600] object-[center_30%]'
-        src='/rafli.JPG'
-    />
-    <img
-        alt='Image 2'
-        class='w-full h-full object-cover rounded-lg'
-        src='/neotic-1.JPG'
-        style='aspect-ratio: 400 / 300;'
-    />
-    <img
-        alt='Image 3'
-        class='w-full h-full object-cover rounded-lg'
-        src='/neotic-2.jpeg'
-        style='aspect-ratio: 400 / 300;'
-    />
-    <img
-        alt='Image 4'
-        class='w-full h-full object-cover rounded-lg col-span-2'
-        src='/person-sitting.jpeg'
-        style='aspect-ratio: 800 / 500;'
-    />
-    <img
-        alt='Image 5'
-        class='w-full h-full object-cover rounded-lg'
-        src='/mirror-selfie.jpg'
-        style='aspect-ratio: 300 / 400;'
-    />
-    <img
-        alt='Image 6'
-        class='w-full h-full object-cover rounded-lg col-span-2'
-        src='/era.jpg'
-        style='aspect-ratio: 400 / 300;'
-    />
-</div>
-
+                    <img
+                        alt='Image 1'
+                        class='w-full h-full object-cover rounded-lg col-span-2 md:col-span-1 row-span-2 aspect-square md:aspect-[800/600] object-[center_30%]'
+                        src='/rafli.JPG'
+                    />
+                    <img alt='Image 2' class='w-full h-full object-cover rounded-lg' src='/neotic-1.JPG' style='aspect-ratio: 400 / 300;' />
+                    <img alt='Image 3' class='w-full h-full object-cover rounded-lg' src='/neotic-2.jpeg' style='aspect-ratio: 400 / 300;' />
+                    <img alt='Image 4' class='w-full h-full object-cover rounded-lg col-span-2' src='/person-sitting.jpeg' style='aspect-ratio: 800 / 500;' />
+                    <img alt='Image 5' class='w-full h-full object-cover rounded-lg' src='/mirror-selfie.jpg' style='aspect-ratio: 300 / 400;' />
+                    <img alt='Image 6' class='w-full h-full object-cover rounded-lg col-span-2' src='/era.jpg' style='aspect-ratio: 400 / 300;' />
+                </div>
             )}
             {hero.text && <div class='max-w-none prose prose-dante sm:prose-lg' set:html={marked.parse(hero.text)} />}
             {hero.actions && hero.actions.length > 0 && (
