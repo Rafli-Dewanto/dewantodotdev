@@ -38,11 +38,11 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Rafli S. Dewanto',
+    title: 'Rafli Satya Dewanto',
     subtitle: 'Software Engineer',
     description: 'Rafli Dewanto - Software Engineer',
     image: {
-        src: '/dante-preview.jpg',
+        src: '/rafli-preview.jpeg',
         alt: 'Rafli Dewanto - Software Engineer'
     },
     headerNavLinks: [
@@ -96,16 +96,20 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'Hi There & Welcome to My Corner of the Web!',
-        text: "I'm **Rafli Dewanto**, a Software Engineer, dedicated to the realms of collaboration and artificial intelligence. My approach involves embracing intuition, conducting just enough research, and leveraging aesthetics as a catalyst for exceptional products. I have a profound appreciation for top-notch software, visual design, and the principles of product-led growth. Feel free to explore some of my coding endeavors on <a href='https://github.com/Rafli-Dewanto'>GitHub</a> or follow me on <a href='https://twitter.com/justgoodui'>Twitter/X</a>.",
+        title: 'Hi 👋, Welcome to My Corner of the Web!',
+        text: "I'm **Rafli Dewanto**, a Software Engineer from Indonesia, currently working with Next.js for Fullstack Web Development. In my leisure time, I am learning Back-End Development with Go and writing post about my learning.. Feel free to explore some of my coding endeavors on <a href='https://github.com/Rafli-Dewanto'>GitHub</a> or follow me on <a href='https://www.linkedin.com/in/rd09/'>LinkedIn</a>.",
         image: {
             src: '/rafli.JPG',
-            alt: 'A person sitting at a desk in front of a computer'
+            alt: 'Rafli Satya Dewanto'
         },
         actions: [
             {
                 text: 'Get in Touch',
                 href: '/contact'
+            },
+            {
+                text: 'Read my CV',
+                href: '/cv.pdf'
             }
         ]
     },
