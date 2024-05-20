@@ -2,7 +2,7 @@
 title: 'FlixTix'
 description: Movie Booking App.
 publishDate: 'Dec 26 2023'
-isFeatured: true
+isFeatured: false
 seo:
   image:
     src: '/flixtix.jpeg'
