@@ -13,9 +13,15 @@ const buttonClasses =
 
 {
     href ? (
-        <a href={href} class:list={[buttonClasses, className]} {...rest}>
-            <slot />
-        </a>
+        typeof href === 'string' && href.includes('.pdf') ? (
+            <a href={href} class:list={[buttonClasses, className]} {...rest} target="_blank">
+                <slot />
+            </a>
+        ) : (
+            <a href={href} class:list={[buttonClasses, className]} {...rest}>
+                <slot />
+            </a>
+        )
     ) : (
         <button class:list={[buttonClasses, className]} {...rest}>
             <slot />
