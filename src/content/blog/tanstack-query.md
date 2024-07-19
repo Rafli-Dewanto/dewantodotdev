@@ -1,12 +1,13 @@
 ---
 title: Tanstack Query Data fetching & Mutation in Next.js
 excerpt: Data fetching yang tepat dan state management sangat penting untuk membangun aplikasi dalam pengembangan web.
-publishDate: 'Jun 08 2024'
+publishDate: 'Jul 20 2024'
 tags:
   - Next.js
+  - Tanstack Query
 seo:
   image:
-    src: 'https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8ebd2aa3n8a9wkjkei55.png'
+    src: 'https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4k4rvdwwszpnqwjalv89.png'
     alt: tanstack query
 isFeatured: true
 ---
@@ -32,7 +33,7 @@ Namun dengan rilisnya React Server Component, ada kemungkinan TanStack Query aka
 ```jsx
 import db from './database';
 
-async function Note({id}) {
+async function Note({ id }) {
   // NOTE: loads *during* render.
   const note = await db.notes.get(id);
   return (
@@ -43,7 +44,7 @@ async function Note({id}) {
   );
 }
 
-async function Author({id}) {
+async function Author({ id }) {
   // NOTE: loads *after* Note,
   // but is fast if data is co-located.
   const author = await db.authors.get(id);
@@ -52,27 +53,28 @@ async function Author({id}) {
 ```
 
 ditambah juga dengan hadirnya server action kita juga bisa melakukan data mutation di server tanpa harus menggunakan client action.
+
 ```jsx
 // Server Component
 import Button from './Button';
 
-function EmptyNote () {
+function EmptyNote() {
   async function createNoteAction() {
     // Server Action
     'use server';
-    
+
     await db.notes.create();
   }
 
-  return <Button onClick={createNoteAction}/>;
+  return <Button onClick={createNoteAction} />;
 }
 ```
 
-Jadi jika kalian memang menggunakan framework react seperti Next.js atau Remix, kita bisa melakukan data fetching dan mutation tanpa menggunakan tanstack query. 
+Jadi jika kalian memang menggunakan framework react seperti Next.js atau Remix, kita bisa melakukan data fetching dan mutation tanpa menggunakan tanstack query.
 
 ![tanstack-maintainer](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/abhyb38qhubwo06y6htd.png)
 
-Namun bukan berarti tanstack query menjadi usang dan tidak bisa digunakan, karena mungkin ada beberapa case yang dimana kita tetap membutuhkan fitur-fitur yang tersedia di tanstack query yang masih belum fully supported di react server component ataupun jika kalian memegang legacy codebase yang memang belum support react server component. Jika kalian ingin membaca lebih lanjut soal React Server Component, kalian bisa membaca di [sini](https://react.dev/reference/react-server-components).
+Namun bukan berarti tanstack query menjadi usang dan tidak bisa digunakan, karena mungkin ada beberapa case yang dimana kita tetap membutuhkan fitur-fitur yang tersedia di tanstack query yang masih belum fully supported di react server component ataupun jika kalian memegang legacy codebase yang memang belum support react server component. Jika kalian ingin membaca lebih lanjut soal React Server Component, kalian bisa membaca di [sini](https://react.dev/reference/rsc/server-components) atau Rendering patterns di blog saya sebelumnya di [sini](https://dewanto.dev/blog/next-rendering-patterns/).
 
 Oke sudah cukup basa-basinya, sekarang kita akan membahas bagaimana cara mengintegrasikan TanStack Query dalam proyek Next.js.
 
@@ -101,11 +103,11 @@ Buat query client dan berikan ke aplikasi kalian. Kalian bisa melakukan ini di f
 
 ```javascript
 // pages/_app.js
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import '../styles/globals.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import '../styles/globals.css';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -113,205 +115,273 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
 ```
 
 atau pada App router
+
+```tsx
+'use client';
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
+export const ReactQueryProvider = ({ children }: { children: React.ReactNode }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+```
+
 ```tsx
 // app/layout.tsx
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { ReactQueryProvider } from '@/components/react-query';
 
-const queryClient = new QueryClient()
+const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: 'Create Next App',
+  description: 'Generated by create next app'
+};
+
+export default function RootLayout({
+  children
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  )
+    <html lang="en">
+      <body className={inter.className}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
+    </html>
+  );
 }
 ```
 
-### Langkah 4: Membuat Hook untuk Mengambil Data
+### Langkah 4: Membuat fungsi untuk Mengambil Data
 
-Buat hook kustom untuk mengambil data menggunakan TanStack Query. Misalnya, kita akan mengambil daftar posting dari API placeholder:
+Di sini saya membuat fungsi yang berkaitan dengan entity tertentu, yang mana pada kasus ini merupakan `post`. Pada file ini saya biasanya mendefinisikan hal-hal yang berkaitan dengan suatu `entity`, seperti baseURL-nya, type definition, dan lain-lain.
 
-```javascript
-// hooks/usePosts.js
-import { useQuery } from '@tanstack/react-query'
+```tsx
+// api/posts.ts
+import axios from 'axios';
 
-const fetchPosts = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
+const baseURL = 'https://jsonplaceholder.typicode.com/';
+
+const instance = axios.create({
+  baseURL
+});
+
+export type Post = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
+
+export async function getPosts(): Promise<Post[]> {
+  try {
+    const response = await instance.get(`/posts`);
+    if (!response.data) {
+      throw new Error('Product not found');
+    }
+    return response.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error('Something went wrong');
   }
-  return response.json()
-}
-
-export const usePosts = () => {
-  return useQuery(['posts'], fetchPosts)
 }
 ```
 
-### Langkah 5: Menggunakan Hook di Komponen
+### Langkah 5: Membuat Custom Hook
 
-Sekarang, kalian bisa menggunakan hook kustom ini di komponen Next.js kalian. Mari kita buat komponen `Posts` untuk menampilkan daftar posting:
+Langkah selanjutnya kita bisa membuat custom hook untuk fungsi yang sudah kita definisikan sebelumnya.
 
-```javascript
+```tsx
 // components/Posts.js
-import { usePosts } from '../hooks/usePosts'
+import { getPosts } from '@/api/posts';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-const Posts = () => {
-  const { data, error, isLoading } = usePosts()
-
-  if (isLoading) return <p>Loading...</p>
-  if (error) return <p>An error occurred: {error.message}</p>
-
-  return (
-    <div>
-      <h1>Posts</h1>
-      <ul>
-        {data.map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </div>
-  )
+export function usePosts() {
+  return useQuery({
+    queryKey: ['posts'],
+    queryFn: getPosts
+  });
 }
-
-export default Posts
 ```
 
 ### Langkah 6: Menambahkan Komponen ke Halaman
 
-Terakhir, sertakan komponen `Posts` di salah satu halaman Next.js kalian:
+Terakhir kita bisa menggunakan custom hook tadi untuk melakukan data fetching pada component yang kita buat. React Query sendiri juga sudah menyediakan state `error` dan `loading` jadi kita tidak perlu membuat banyak _unnecessary_ state
 
-```javascript
-// pages/index.js
-import Posts from '../components/Posts'
+```tsx
+'use client';
 
-export default function Home() {
+import usePosts from '@/hooks/posts';
+
+const Post = () => {
+  const { data, isError, isLoading } = usePosts();
+
   return (
-    <div>
-      <h1>Welcome to My Blog</h1>
-      <Posts />
+    <div className="container mx-auto p-4">
+      {isLoading && (
+        <div className="flex justify-center items-center">
+          <p className="text-lg font-semibold text-blue-500">Loading...</p>
+        </div>
+      )}
+      {isError && (
+        <div className="flex justify-center items-center">
+          <p className="text-lg font-semibold text-red-500">Error fetching data</p>
+        </div>
+      )}
+      {data && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.map((post) => (
+            <div key={post.id} className="p-4 border rounded-lg shadow-md bg-white">
+              <h2 className="text-xl font-bold mb-2">{post.title}</h2>
+              <p className="text-gray-700">{post.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-  )
+  );
+};
+
+export default Post;
+```
+
+Maka, komponen Post kita sekarang sudah dapat mengambil data dari custom hook usePosts yang kita buat sebelumnya. Dengan memanfaatkan state isLoading, isError, dan data yang disediakan oleh React Query, kita dapat mengatur tampilan UI sesuai dengan kondisi data fetching tersebut. Jika data sedang diambil, kita akan menampilkan pesan "Loading..."; jika terjadi kesalahan, kita akan menampilkan pesan error; dan jika data sudah berhasil diambil, kita akan menampilkan daftar postingan dalam grid layout. Dengan pendekatan ini, kita dapat menghindari pembuatan state yang tidak diperlukan dan menjaga kode kita tetap bersih dan mudah dipahami.
+
+![post-page](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xz22s1k8l7gz8poou8qb.png)
+
+Nah itu tadi adalah cara untuk menggunakan react query pada project next.js. Selanjutnya kita akan mengimplementasikan penggunaan `useMutation` react query pada next.js.
+
+Pertama kita akan melakukan hal sama yaitu dengan mendefinisikan fungsi fetching API pada file `post.ts` yang sudah kita buat sebelumnya.
+
+```tsx
+// api/post.ts
+export async function createPosts({ body, title }: { title: string; body: string }) {
+  try {
+    const response = await instance.post(`/posts`, {
+      title: title,
+      body: body,
+      userId: Math.floor(Math.random() * 100) + 1
+    });
+    if (!response.data) {
+      throw new Error('Failed to create post');
+    }
+    return response.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error('Something went wrong');
+  }
 }
 ```
 
-## Penggunaan Lanjutan
+Selanjutnya kita buat juga custom hook untuk create post.
 
-### Server-Side Rendering
-
-TanStack Query bekerja dengan baik dengan server-side rendering Next.js. Untuk mengambil data di sisi server, gunakan fungsi `getServerSideProps`:
-
-```javascript
-// pages/index.js
-import { dehydrate, QueryClient } from '@tanstack/react-query'
-import Posts from '../components/Posts'
-import { fetchPosts } from '../hooks/usePosts'
-
-export async function getServerSideProps() {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery(['posts'], fetchPosts)
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
+```tsx
+// src/hooks/posts.ts
+export function useCreatePost() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createPosts,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["posts"],
+      });
     },
-  }
-}
-
-export default function Home() {
-  return (
-    <div>
-      <h1>Welcome to My Blog</h1>
-      <Posts />
-    </div>
-  )
+  });
 }
 ```
+Dengan menggunakan useMutation, kita tidak perlu mengelola state untuk loading atau error secara manual karena React Query sudah menyediakan ini untuk kita. useMutation memungkinkan kita untuk mengatur state dan side effect yang terkait dengan operasi create, update, atau delete. Pada contoh ini, ketika form disubmit, kita menggunakan postMutation.mutate untuk mengirimkan data postingan baru ke server. Jika permintaan berhasil, kita akan menavigasi kembali ke halaman utama menggunakan router.replace('/').
 
-### Infinite Queries
+Lalu kita bisa menggunakan fungsi ini pada component yang kita buat
 
-TanStack Query juga mendukung infinite scrolling. Berikut adalah contoh cepatnya:
+```tsx
+'use client';
 
-```javascript
-// hooks/useInfinitePosts.js
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useCreatePost } from '@/hooks/posts';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
-const fetchPosts = async ({ pageParam = 1 }) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${pageParam}`)
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-  return response.json()
-}
+const CreatePost = () => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const postMutation = useCreatePost();
+  const router = useRouter();
 
-export const useInfinitePosts = () => {
-  return useInfiniteQuery(['posts'], fetchPosts, {
-    getNextPageParam: (lastPage, pages) => pages.length + 1,
-  })
-}
-```
-
-Di dalam komponen kalian:
-
-```javascript
-// components/InfinitePosts.js
-import { useInfinitePosts } from '../hooks/useInfinitePosts'
-
-const InfinitePosts = () => {
-  const {
-    data,
-    error,
-    isLoading,
-    isFetching,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfinitePosts()
-
-  if (isLoading) return <p>Loading...</p>
-  if (error) return <p>An error occurred: {error.message}</p>
+  const handleSubmit = async (e: React.FormEvent<HTMLElement>) => {
+    e.preventDefault();
+    postMutation.mutate(
+      {
+        body,
+        title
+      },
+      {
+        onSuccess: () => {
+          router.replace('/');
+        }
+      }
+    );
+  };
 
   return (
-    <div>
-      <h1>Infinite Posts</h1>
-      <ul>
-        {data.pages.map((page, index) => (
-          <React.Fragment key={index}>
-            {page.map(post => (
-              <li key={post.id}>{post.title}</li>
-            ))}
-          </React.Fragment>
-        ))}
-      </ul>
-      <button
-        onClick={() => fetchNextPage()}
-        disabled={!hasNextPage || isFetching}
-      >
-        {isFetching ? 'Loading more...' : hasNextPage ? 'Load More' : 'No more posts'}
-      </button>
+    <div className="max-w-lg mx-auto p-4 bg-white rounded-lg shadow-md mt-10">
+      <h1 className="text-2xl font-bold mb-4">Create a New Post</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Body</label>
+          <textarea
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            placeholder="Body"
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows={5}
+          />
+        </div>
+        <button type="submit" className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">
+          Create Post
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default InfinitePosts
+export default CreatePost;
 ```
+Di sini bisa kita lihat bahwa fungsi untuk create post berjalan dengan baik namun karena saya menggunakan dummy API datanya tidak masuk ke server dan hanya menampilkan response payload kita saja.
+
+![create-post](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4k4rvdwwszpnqwjalv89.png)
+
+Pendekatan ini membuat kode kita lebih bersih dan terorganisir, mengurangi boilerplate code yang sering ditemukan saat mengelola state secara manual. Selain itu, dengan onSuccess callback, kita bisa dengan mudah menentukan tindakan yang perlu dilakukan setelah mutasi berhasil, seperti navigasi ulang atau menampilkan pesan sukses.
 
 ## Kesimpulan
 
-Mengintegrasikan TanStack Query dengan Next.js dapat secara signifikan meningkatkan kemampuan manajemen data aplikasi kalian. Dengan menyediakan pengambilan data deklaratif, caching otomatis, pembaruan latar belakang, dan lainnya, TanStack Query membantu kalian membangun aplikasi yang kinerja dan ketahanannya tinggi. Baik kalian sedang membangun blog sederhana atau aplikasi data-driven yang kompleks, menggabungkan dua alat yang kuat ini akan merampingkan proses pengembangan dan meningkatkan pengalaman pengguna kalian.
+Mengintegrasikan _TanStack Query_ dengan _Next.js_ dapat secara signifikan meningkatkan kemampuan manajemen data aplikasi kalian. Dengan menyediakan pengambilan data deklaratif, caching otomatis, pembaruan latar belakang, dan lainnya, _TanStack Query_ membantu kalian membangun aplikasi yang kinerja dan ketahanannya tinggi. Namun, kembali lagi jika memang kalian menggunakan framework seperti _Next.js_ atau _Remix_, kemungkinan besar kalian tidak perlu _overengineer_ dan menggunakan library ini, tapi hal ini kembali lagi ke project yang dikerjakan serta requirements yang ada.
 
 Happy coding!
 
 Sources:
+
 - https://tkdodo.eu/blog/you-might-not-need-react-query
 - https://react.dev/reference/react-server-components
