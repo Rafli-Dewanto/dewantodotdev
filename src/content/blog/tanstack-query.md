@@ -12,9 +12,9 @@ seo:
 isFeatured: true
 ---
 
-Data fetching yang tepat dan state management sangat penting untuk membangun aplikasi dalam pengembangan web. TanStack Query (sebelumnya React Query), adalah library yang menyederhanakan data fetching, caching, sinkronisasi data, dan lebih banyak lagi.
+_Data fetching_ yang tepat dan _state management_ sangat penting untuk membangun aplikasi dalam pengembangan web. _TanStack Query_ (sebelumnya React Query), adalah _library_ yang menyederhanakan data fetching, caching, sinkronisasi data, dan lebih banyak lagi.
 
-Dalam postingan blog ini, kita akan menjelajahi cara mengintegrasikan dan menggunakan TanStack Query dalam proyek Next.js, mencakup konsep dasar dan contoh praktis untuk membantu Anda memulai.
+Dalam postingan blog ini, kita akan meng-_explore_ cara mengintegrasikan dan menggunakan _TanStack Query_ dalam project _Next.js_, mencakup konsep dasar dan best practicenya.
 
 ## Benefit of TanStack Query in Next.js
 
