@@ -12,9 +12,9 @@ seo:
 isFeatured: true
 ---
 
-_Data fetching_ yang tepat dan _state management_ sangat penting untuk membangun aplikasi dalam pengembangan web. _TanStack Query_ (sebelumnya React Query), adalah _library_ yang menyederhanakan data fetching, caching, sinkronisasi data, dan lebih banyak lagi.
+Data fetching yang tepat dan state management sangat penting untuk membangun aplikasi dalam pengembangan web. TanStack Query (sebelumnya React Query), adalah library yang menyederhanakan data fetching, caching, sinkronisasi data, dan lebih banyak lagi.
 
-Dalam postingan blog ini, kita akan meng-_explore_ cara mengintegrasikan dan menggunakan _TanStack Query_ dalam project _Next.js_, mencakup konsep dasar dan best practicenya.
+Dalam postingan blog ini, kita akan meng-_explore_ cara mengintegrasikan dan menggunakan TanStack Query dalam project Next.js, mencakup konsep dasar dan best practicenya.
 
 ## Benefit of TanStack Query in Next.js
 
@@ -377,7 +377,7 @@ Pendekatan ini membuat kode kita lebih bersih dan terorganisir, mengurangi boile
 
 ## Kesimpulan
 
-Mengintegrasikan _TanStack Query_ dengan _Next.js_ dapat secara signifikan meningkatkan kemampuan manajemen data aplikasi kalian. Dengan menyediakan pengambilan data deklaratif, caching otomatis, pembaruan latar belakang, dan lainnya, _TanStack Query_ membantu kalian membangun aplikasi yang kinerja dan ketahanannya tinggi. Namun, kembali lagi jika memang kalian menggunakan framework seperti _Next.js_ atau _Remix_, kemungkinan besar kalian tidak perlu _overengineer_ dan menggunakan library ini, tapi hal ini kembali lagi ke project yang dikerjakan serta requirements yang ada.
+Mengintegrasikan TanStack Query dengan Next.js dapat secara signifikan meningkatkan kemampuan manajemen data aplikasi kalian. Dengan menyediakan pengambilan data deklaratif, caching otomatis, pembaruan latar belakang, dan lainnya, TanStack Query membantu kalian membangun aplikasi yang kinerja dan ketahanannya tinggi. Namun, kembali lagi jika memang kalian menggunakan framework seperti Next.js atau Remix, kemungkinan besar kalian tidak perlu "overengineer" dan menggunakan library ini, tapi hal ini kembali lagi ke project yang dikerjakan serta requirements yang ada.
 
 Happy coding!
 
