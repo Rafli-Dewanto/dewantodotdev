@@ -7,6 +7,7 @@ import PostPreview from '../../../components/PostPreview.astro';
 import siteConfig from '../../../data/site-config';
 import { sortItemsByDateDesc, getAllTags, getPostsByTag } from '../../../utils/data-utils';
 
+export const prerender = true;
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
     const tags = getAllTags(posts);
