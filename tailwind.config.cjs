@@ -9,9 +9,12 @@ module.exports = {
             serif: ['Newsreader', ...defaultTheme.fontFamily.serif]
         },
         extend: {
+            fontFamily: {
+                cursive: ['Allura', 'cursive'],
+            },
             backgroundImage: {
                 'grain': "url('/grain-4.jpg')",
-              },
+            },
             textColor: {
                 main: 'rgb(var(--color-text-main) / <alpha-value>)'
             },
