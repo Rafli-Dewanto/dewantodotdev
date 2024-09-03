@@ -1,0 +1,29 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Pagination from '../../components/Pagination.astro';
+import RecipePreview from '../../components/RecipePreview.astro';
+import siteConfig from '../../data/site-config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortItemsByDateDesc } from '../../utils/data-utils';
+
+export const prerender = true;
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const posts = (await getCollection('recipes')).sort(sortItemsByDateDesc);
+    return paginate(posts, { pageSize: siteConfig.postsPerPage || 4 });
+}
+
+type Props = { page: Page<CollectionEntry<'recipes'>> };
+
+const { page } = Astro.props;
+const recipes = page.data;
+---
+
+<BaseLayout title='Recipes' description='code recipes that i find useful' image={{ src: '', alt: '' }} showHeader={false}>
+    <article class='mb-12 sm:mb-16'>
+        <h1 class='text-2xl leading-tight font-serif italic sm:text-4xl'>Recipes</h1>
+        <p>A collection of short pieces of code that I find helpful but aren't refined enough to post on a blog</p>
+    </article>
+    {recipes.map((post) => <RecipePreview post={post} class='mb-10 sm:mb-12' />)}
+    <Pagination page={page} class='my-16 sm:my-24' />
+</BaseLayout>
