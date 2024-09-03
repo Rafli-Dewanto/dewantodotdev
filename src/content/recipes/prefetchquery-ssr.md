@@ -1,7 +1,7 @@
 ---
-title: 'prefetchquery ssr'
+title: 'SSR prefetchQuery (Tanstack Query)'
 description: .
-publishDate: 'sep 03 2024'
+publishDate: 'Sep 03 2024'
 isFeatured: false
 seo:
   image:
