@@ -41,4 +41,15 @@ const projects = defineCollection({
     })
 });
 
-export const collections = { blog, pages, projects };
+const recipes = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        isFeatured: z.boolean().default(false),
+        publishDate: z.coerce.date(),
+        updatedDate: z.coerce.date().optional(),
+        seo: seoSchema.optional()
+    })
+});
+
+export const collections = { blog, pages, projects, recipes };
